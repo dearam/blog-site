@@ -1,11 +1,27 @@
 const Blog=require('../model/blog.model');
 const User=require('../model/user.model');
 const mongoose = require('mongoose');
+const multer = require ('multer')
+const path = require('path')
+
+const storage = multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,'uploads/');
+    },
+    filename:(req,res,cb)=>{
+        const ext = path.extname(file.originalname);
+        const filename = Date.now()+ext;
+        cb(null,filename);
+    }
+})
+
+const upload = multer({storage});
 
 const newBlog=async (req,res)=>{
     try{
         const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
-        const {title,userId,categories,tags,body,quotes,image}=req.body;
+        const {title,userId,categories,tags,body,quotes}=req.body;
+        const image = req.file ? req.file.filename:'';
         
 
         if (!isValidObjectId(userId)) {
@@ -70,4 +86,5 @@ const getAllBlogs=async(req,res)=>{
     }
 }
 
-module.exports={newBlog,getAllBlogs}
+
+module.exports={newBlog,getAllBlogs,upload}

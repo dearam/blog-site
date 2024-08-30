@@ -3,6 +3,6 @@ const router=express.Router();
 
 const blogController=require('../controller/blog.controller');
 
-router.post("/newblog",blogController.newBlog);
+router.post("/newblog",blogController.upload.single('image'),blogController.newBlog);
 router.get("/getallblogs",blogController.getAllBlogs);
 module.exports=router;

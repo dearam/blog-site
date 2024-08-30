@@ -15,9 +15,13 @@ interface UploadEvent {
 export class BlogNewComponent {
   values:string[]=[];
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService,) {}
 
   onUpload(event: any) {
+    const file = event.files[0];
+    // this.messageService.upload(file).subscribe(
+      
+    // )
     this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
   }
 }

@@ -10,6 +10,7 @@ const verifyToken = require('../middlewares/verify');
 router.post("/register",userController.registerUser);
 router.post("/login",userController.userLogin);
 
+
 router.use(verifyToken);
 
 router.get("/userinfo",userController.userInfo);
