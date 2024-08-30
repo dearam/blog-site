@@ -1,0 +1,34 @@
+.card{
+    margin: 5%;
+    width: 65%;
+    border-radius: 15px;
+    background-color: white;
+    padding: 10px;
+}
+section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+:host ::ng-deep{
+    .p-button{
+        padding: 5px 15px;
+    }
+    .p-message{
+        font-size: 12px;
+    }
+    .p-message .p-message-wrapper{
+        padding: 5px 20px;
+    }
+    .p-datatable .p-datatable-tbody > tr > td {
+        padding: 10px;
+    }
+    .p-message .p-message-close,.p-message .p-icon{
+        width: 15px;
+        height: 15px;
+        margin: 10px;
+    }
+
+
+}

@@ -1,0 +1,45 @@
+<div style="display:flex;justify-content: center;align-items: center;">
+    <p-messages [(value)]="messages" [enableService]="false" class="custom"/>
+</div>
+<section>
+    <p style="color: white;font-family: 'Poppins';">Users Page</p>
+    <div class="card">
+        <p-table [value]="users" [tableStyle]="{ 'min-width': '10rem' }" >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user let-i="rowIndex">
+                <tr>
+                    <td>{{ i+1 }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td style="display: flex; gap: 10px;">
+                        <p-button label="view" severity="success" (click)="openViewDialog(user,'view')"/>
+                        <p-button label="edit" severity="warning" (click)="openViewDialog(user,'edit')"/>
+                        <p-button label="delete" severity="danger" (click)="deleteUser(user._id)"/>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <p-dialog  [(visible)]="displayDialog" [modal]="true" [style]="{width:'300px'}">
+        <ng-template pTemplate="header" >
+            <div style="display: flex;justify-content: center;align-items: center;gap: 10px;">
+                <p-avatar 
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                    shape="circle" />
+                <span class="font-bold white-space-nowrap" style="font-weight: 700;">
+                    {{selectedUser?.name||'no name'}}
+                </span>
+            </div>
+        </ng-template>
+        <span style="color: grey;font-size: 12px;">{{labelname}} your information</span>
+        <app-view [user]="selectedUser" [label]="labelname"></app-view>
+    </p-dialog>
+</section>

@@ -1,0 +1,99 @@
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+    width: 25%;
+    padding: 1%;
+}
+.title{
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.p-inputgroup{
+    width: 100%;
+}
+input{
+    width: 100%;
+    outline: none;
+    border: 1px solid #999;
+}
+.pwd{
+    width: 100%;
+}
+a{
+    font-size: 12px;
+    color: rgb(43, 152, 241);
+    text-decoration: none;
+    font-weight: 400;
+}
+a:hover{
+    text-decoration: underline;
+}
+.input-error{
+    font-size: 10px;
+    color: red;
+}
+.input{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.checkmark {
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: green;
+    top: -10px;
+    left: 15px;
+    background-color: greenyellow;
+    border-radius: 50%;
+}
+.blog-user-deatails{
+    position: relative; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    justify-content: center;
+}
+.blog-user-details.selected {
+    border: 2px solid blue;
+    border-radius: 50%;
+}
+.avatar {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+:host ::ng-deep{
+    .p-avatar{
+        z-index: 1;
+        display: flex;
+    }
+}

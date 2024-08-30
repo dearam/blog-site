@@ -1,0 +1,33 @@
+<section>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="title">Sign-In</div>
+        <hr />
+        <div class="content">
+            <div class="input">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-user"></i>
+                    </span>
+                    <input pInputText placeholder="email" [(ngModel)]="email" name="email" required type="text" />
+                </div>
+                <span class="input-error" *ngIf="emailError">{{ emsg }}</span>
+            </div>
+            <div class="input">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-key"></i>
+                    </span>
+                    <input pInputText placeholder="password" type="password" [(ngModel)]="password" name="password" required />
+                </div>
+                <span class="input-error" *ngIf="passwordError">{{ pmsg }}</span>
+            </div>
+            <p-button label="Login" type="submit"></p-button>
+            <a routerLink="/register">New User?</a>
+        </div>
+    </form>
+    <div *ngIf="authStatus" style="position: absolute;right: 10px;top: 10px;">
+        <p-button routerLink="/home">
+            home
+        </p-button>
+    </div>
+</section>

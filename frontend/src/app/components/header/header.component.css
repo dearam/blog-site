@@ -1,0 +1,48 @@
+.try{  
+    height: 50px;
+}
+.summa{
+    background-color: aliceblue;
+}
+:host ::ng-deep .ui-menubar {
+    height: 100%; 
+}
+
+.logout-button {
+    position: relative; /* Make the button a positioned element */
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor to pointer */
+    font-size: 24px; /* Adjust icon size */
+}
+
+.tooltip {
+    font-size: 14px;
+    visibility: hidden; /* Hide tooltip by default */
+    width: 70px; /* Tooltip width */
+    background-color: white; /* Dark background for tooltip */
+    color: black; /* Text color */
+    text-align: center; /* Center text */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding */
+    position: absolute; /* Position it relative to button */
+    top: 145%; /* Position below the button */
+    left: 50%; /* Center horizontally */
+    margin-left: -50px; /* Adjust to center tooltip */
+    z-index: 1; /* Show above other elements */
+    opacity: 0; /* Fully transparent */
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+.logout-button:hover .tooltip {
+    visibility: visible; /* Show tooltip on hover */
+    opacity: 1; /* Make tooltip visible */
+}
+.logout-button:hover i{
+    color: red;
+}
+.logout-button:hover{
+    border: 1px solid red;
+    border-radius: 50%;
+    transition: opacity 0.3s
+}

@@ -1,0 +1,55 @@
+<section>
+    <form (ngSubmit)="formSubmit()" #loginForm="ngForm">       
+        <div class="title">Sign-Up</div>
+        <hr/>
+        <div class="content">
+            <div class="input">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-user" style="color: slateblue"></i>
+                    </span>
+                    <input pInputText placeholder="username" type="text" required [(ngModel)]="username" name="username"/>
+                </div>
+                <span class="input-error" *ngIf="uerror">{{ umsg }}</span>
+            </div>
+            <div class="input">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-envelope" style="color: slateblue"></i>
+                    </span>
+                    <input pInputText placeholder="Email" type="email" required [(ngModel)]="email" name="email"/>
+                </div>
+                <span class="input-error" *ngIf="eerror">{{ emsg }}</span>
+            </div>
+            <div class="input">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon" >
+                        <i class="pi pi-key" style="color: slateblue"></i>
+                    </span>
+                    <input pInputText placeholder="password" type="password" required [(ngModel)]="password" name="password"/>
+                </div>
+                <span class="input-error" *ngIf="perror">{{ pmsg }}</span>
+            </div>
+            <div><span style="font-size: 10px;">choose one</span></div>
+            <div style="display: grid;grid-template-columns: repeat(5,minmax(0,1fr));gap: 15px;">
+                <div 
+                    class="blog-user-deatails" 
+                    *ngFor="let image of images"
+                    [class.selected]="selectedAvatar===image"
+                    (click)="selectAvatar(image)"
+                    >
+                    <p-avatar 
+                    [image]="image" 
+                    styleClass="mr-2" 
+                    shape="circle"/>
+                    <div class="checkmark" *ngIf="selectedAvatar===image">
+                        <span class="pi pi-check-circle"></span>
+                    </div>
+                </div>
+            </div>
+            <span class="input-error" *ngIf="serror">{{ smsg }}</span>
+            <p-button label="Register" type="submit"></p-button>
+            <a routerLink="/login">Already registered User?</a>
+        </div>
+    </form>
+</section>

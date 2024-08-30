@@ -1,0 +1,18 @@
+input{
+    padding: 5px;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.inputBox{
+    display: flex;
+}
+label{
+    width: 100px;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}

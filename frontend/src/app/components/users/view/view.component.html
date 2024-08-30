@@ -1,0 +1,47 @@
+<div *ngIf="isView();else elseBlock">
+    <div *ngIf="user">
+        <div class="inputBox">
+            <p style="width: 50px;">UserId: </p>
+            <p>{{ user._id }}</p>
+        </div>
+        <div class="inputBox">
+            <p style="width: 50px;">Name: </p>
+            <p> {{ user.name }}</p>
+        </div>
+        <div class="inputBox">
+            <p style="width: 50px;">Email: </p>
+            <p>{{ user.email }}</p>
+        </div>
+    </div>
+</div>
+<ng-template #elseBlock>
+    <div *ngIf="user" class="card">
+        <div class="inputBox">
+            <label for="username">
+                Username
+            </label>
+            <input pInputText id="username" class="flex-auto" autocomplete="off"  [(ngModel)]="user.name" />
+        </div>
+        <div class="inputBox" >
+            <label for="email">Email</label>
+            <input pInputText id="email" class="flex-auto" autocomplete="off"  [(ngModel)]="user.email" />
+        </div>
+        <div class="inputBox" >
+            <label for="email" >Password</label>
+            <input pInputText id="email" class="flex-auto" autocomplete="off"  [(ngModel)]="password" />
+        </div>
+        <div style="display:flex;justify-content: space-between;margin-top: 30px;">
+            <p-button 
+                label="Cancel" 
+                [text]="true" 
+                severity="secondary" 
+                (onClick)="cancel()" />
+            <p-button 
+                label="Save" 
+                [outlined]="true" 
+                severity="secondary" 
+                (onClick)="save(user._id)" 
+              />
+        </div>
+    </div>
+</ng-template>

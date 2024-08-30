@@ -1,0 +1,95 @@
+section{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+}
+.wrapper{
+    width: 70%;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.second-wrapper{
+    min-height: 150vh;
+}
+footer{
+    position: relative;
+    bottom: 10px;
+    display: flex;
+    background-color: rgb(231, 255, 196);
+    justify-content: center;
+    margin: 20px;
+    color: #444;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.titleinput{
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 45px;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 25px;
+    font-family: "poppins";
+}
+.quoteinput{
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 45px;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 25px;
+    font-family: "poppins";
+}
+.textarea {
+    display: block;
+    width: 93%;
+    font-size: 14px;
+    overflow: hidden;
+    resize: both;
+    min-height: 150px;
+    line-height: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    outline: none;
+    border: 0.5px solid gray;
+    border-radius: 10px;
+  }
+  
+.textarea[contenteditable]:empty::before {
+    content: "Type Your Thoughts";
+    color: gray;
+  }
+  
+.wrapper-space{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+}
+.newBlog{
+    margin-top: 10px;
+    font-size: 30px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.p-fluid{
+    padding: 0px 35px 0px 25px;
+    width: 100%;
+}
+.card{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}

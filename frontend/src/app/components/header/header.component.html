@@ -1,0 +1,16 @@
+<section>
+    <div class="try">
+        <p-menubar [model]="items" styleClass="ui-menubar">
+            <div style="display: flex;justify-content: center;align-items: center; height: 40px;gap: 10px;">
+                <p-chip 
+                    label="{{name}}" 
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" 
+                    alt="Avatar image" />
+                <button class="logout-button" (click)="onClick()">
+                    <i class="pi pi-power-off" style="font-size: 1rem"></i>
+                    <span class="tooltip">Log Out</span>
+                </button>
+            </div>
+        </p-menubar>
+    </div>
+</section>

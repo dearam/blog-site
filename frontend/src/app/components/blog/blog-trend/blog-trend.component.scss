@@ -1,0 +1,56 @@
+section{
+    color: white;
+    background-color: white;
+    padding: 2px;
+    opacity: 10%;
+    position: absolute;
+    border-radius: 10px;
+    height: 220px;
+    width: 65%;
+}
+img{
+    margin: 10px;
+    width: 40%;
+    height: 200px;
+    border-radius: 10px;
+}
+:host ::ng-deep{
+    .p-tag{
+        font-size: 10px;
+        font-weight: 500;
+        background-color: rgb(255, 199, 199);
+        color: red;
+        opacity: 90%;
+    }
+}
+.blog-title{
+    font-size: 25px;
+    font-weight: 700;
+    color: white;
+}
+span{
+    font-size: 14px;
+    color: gray;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 5px;
+}
+
+.blog-user-deatails{
+    display: flex;
+    gap: 10px;
+}
+
+.user-name{
+    color: white;
+}
+.read-time{
+    font-size: 10px;
+}
+.blog-name-time{
+    display: flex;
+    flex-direction: column;
+}

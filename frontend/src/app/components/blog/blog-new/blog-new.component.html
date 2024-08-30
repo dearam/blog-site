@@ -1,0 +1,40 @@
+<section>
+    <form class="wrapper">
+        <div class="second-wrapper">
+            <div style="display: flex;align-items: center;justify-content: center;">
+                <span class="newBlog">New Blog</span>
+            </div>
+            <p-divider></p-divider>
+            <div class="wrapper-space">
+                <input class="titleinput" placeholder="Title"/>
+                <span class="textarea" role="textbox" contenteditable></span>
+                <div class="p-fluid">
+                    Tags
+                    <p-chips [(ngModel)]="values" />
+                </div>
+                <div class="p-fluid">
+                    Categories
+                    <p-chips [(ngModel)]="values" />
+                </div>
+                <input class="quoteinput" placeholder="Type Quote"/>
+            </div>
+            <div class="card flex justify-content-center">
+                <p-toast />
+                <p-fileUpload 
+                    mode="basic" 
+                    chooseLabel="Choose Image for Blog" 
+                    chooseIcon="pi pi-upload"
+                    name="demo[]" 
+                    url="https://www.primefaces.org/cdn/api/upload.php" 
+                    accept="image/*" 
+                    [maxFileSize]="1000000"
+                    (onUpload)="onUpload($event)" />
+            </div>
+            <div style="display: flex;align-items: center;justify-content: center;">
+                <p-button>submit</p-button>
+            </div>    
+        </div>
+        
+        <footer>Explore and Discuss your thoughts with us!</footer>
+    </form>
+</section>
