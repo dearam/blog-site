@@ -8,15 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class BlogService {
 
-  private baseUrl = 'http://localhost:3000/blog';
+  private baseUrl = 'http://localhost:3000/upload';
 
   constructor(private http:HttpClient,private router:Router) { }
 
-  upload(file:File):Observable<any>{
-    const formData = new FormData();
-    formData.append('image',file,file.name);
-
-    return this.http.post(`${this.baseUrl}/uploadImage`,formData);
+  upload(formData:FormData):Observable<any>{
+    return this.http.post<any>(this.baseUrl,formData);
   }
 
 }

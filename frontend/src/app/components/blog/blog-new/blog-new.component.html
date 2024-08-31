@@ -22,9 +22,13 @@
                 <input id="fileInput"  type="file" (change)="onUpload($event)" accept=".jpg,.jpeg,.png" style="display: none;"/>
                 <label for="fileInput" class="custom-file-upload">{{button}}</label>
             </div>
+            <div>
+                <img [src]="imageUrl"/>
+            </div>
             <div style="display: flex;align-items: center;justify-content: center;">
                 <p-button>submit</p-button>
-            </div>    
+            </div>  
+
         </div>
         
         <footer>Explore and Discuss your thoughts with us!</footer>

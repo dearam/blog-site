@@ -17,15 +17,41 @@ export class BlogNewComponent {
   values:string[]=[];
   imageUrl:string="";
   button:string="Choose image";
-  constructor(private messageService: MessageService,private blogservice:BlogService) {}
+  selectedFile:File|null=null;
+  constructor(private blogservice:BlogService) {}
 
   onUpload(event: any) {
     const fileInput=event.target as HTMLInputElement;
+
     if(event.target.files.length>0){
-      if(event.target.files.length>1){
-        alert("you can only upload one file");
+      if(fileInput.files){
+        this.button=fileInput.files[0].name;
+        this.selectedFile=fileInput.files[0];
+        this.uploadFileBackend();
       }
-      console.log(event);
+    }
+  }
+  uploadFileBackend(){
+    if(this.selectedFile){
+      const formData=new FormData();
+      formData.append('file',this.selectedFile);
+
+      this.blogservice.upload(formData).subscribe({
+        next:(res)=>{
+          console.log("success",res);
+          this.viewFile(res.filename)
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      })
+    }
+  }
+
+  viewFile(filename:string) {
+    if(this.selectedFile){
+      console.log(this.selectedFile.name);
+      this.imageUrl = `http://localhost:3000/uploads/${encodeURIComponent(filename)}`;
     }
   }
 }
