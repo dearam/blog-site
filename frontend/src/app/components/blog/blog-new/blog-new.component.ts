@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { BlogService } from 'src/app/service/blog.service';
 
 
 interface UploadEvent {
@@ -14,14 +15,17 @@ interface UploadEvent {
 })
 export class BlogNewComponent {
   values:string[]=[];
-
-  constructor(private messageService: MessageService,) {}
+  imageUrl:string="";
+  button:string="Choose image";
+  constructor(private messageService: MessageService,private blogservice:BlogService) {}
 
   onUpload(event: any) {
-    const file = event.files[0];
-    // this.messageService.upload(file).subscribe(
-      
-    // )
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
+    const fileInput=event.target as HTMLInputElement;
+    if(event.target.files.length>0){
+      if(event.target.files.length>1){
+        alert("you can only upload one file");
+      }
+      console.log(event);
+    }
   }
 }

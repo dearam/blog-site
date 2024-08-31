@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
 
 const uri = 'mongodb+srv://ramprasath2709:VzqO4gOwC8kcWYcF@cluster0.4bc146d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';

@@ -93,3 +93,12 @@ footer{
     justify-content: center;
     margin: 10px;
 }
+
+.custom-file-upload{
+    background-color: rgb(194, 194, 255);
+    color: black;
+    padding: 7px 10px 7px 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}

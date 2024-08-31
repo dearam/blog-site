@@ -1,21 +1,24 @@
 const Blog=require('../model/blog.model');
 const User=require('../model/user.model');
 const mongoose = require('mongoose');
-const multer = require ('multer')
-const path = require('path')
+// const multer = require ('multer')
+// const path = require('path')
+// const upload = require("../controller/multerConfig");
 
-const storage = multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,'uploads/');
-    },
-    filename:(req,res,cb)=>{
-        const ext = path.extname(file.originalname);
-        const filename = Date.now()+ext;
-        cb(null,filename);
+
+const uploadImage=(req,res)=>{
+    if(!req.file){
+        return res.status(400).json({ message:'No file upload' });
     }
-})
 
-const upload = multer({storage});
+    const fileUrl = url.resolve('http://localhost:3000/', 'uploads/' + req.file.filename);
+
+    res.status.json({
+        message:'File uploaded successfully',
+        uploadimageurl:fileUrl
+    });
+}
+
 
 const newBlog=async (req,res)=>{
     try{
@@ -87,4 +90,4 @@ const getAllBlogs=async(req,res)=>{
 }
 
 
-module.exports={newBlog,getAllBlogs,upload}
+module.exports={newBlog,getAllBlogs,uploadImage} 

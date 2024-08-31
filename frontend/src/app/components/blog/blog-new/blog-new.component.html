@@ -19,16 +19,8 @@
                 <input class="quoteinput" placeholder="Type Quote"/>
             </div>
             <div class="card flex justify-content-center">
-                <p-toast />
-                <p-fileUpload 
-                    mode="basic" 
-                    chooseLabel="Choose Image for Blog" 
-                    chooseIcon="pi pi-upload"
-                    name="demo[]" 
-                    url="https://www.primefaces.org/cdn/api/upload.php" 
-                    accept="image/*" 
-                    [maxFileSize]="1000000"
-                    (onUpload)="onUpload($event)" />
+                <input id="fileInput"  type="file" (change)="onUpload($event)" accept=".jpg,.jpeg,.png" style="display: none;"/>
+                <label for="fileInput" class="custom-file-upload">{{button}}</label>
             </div>
             <div style="display: flex;align-items: center;justify-content: center;">
                 <p-button>submit</p-button>
