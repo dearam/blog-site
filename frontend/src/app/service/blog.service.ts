@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class BlogService {
 
-  private baseUrl = 'http://localhost:3000/upload';
+  private baseUrl = 'http://localhost:3000/blog/upload';
 
   constructor(private http:HttpClient,private router:Router) { }
 

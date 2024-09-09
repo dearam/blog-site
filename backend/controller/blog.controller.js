@@ -8,15 +8,9 @@ const mongoose = require('mongoose');
 
 const uploadImage=(req,res)=>{
     if(!req.file){
-        return res.status(400).json({ message:'No file upload' });
+        return res.status(400).send('no file uploaded');
     }
-
-    const fileUrl = url.resolve('http://localhost:3000/', 'uploads/' + req.file.filename);
-
-    res.status.json({
-        message:'File uploaded successfully',
-        uploadimageurl:fileUrl
-    });
+    console.log("file uploaded successfully");
 }
 
 
