@@ -108,3 +108,35 @@ footer{
     font-size: 10px;
     color: red;
 }
+
+.successSection{
+    display: flex;
+    position: absolute;
+    color: white;
+    height: 100%;
+    width: 97%;
+    align-items: center;
+    justify-content: center;
+}
+
+/* success-card.component.css */
+.successCard {
+    background-color: rgba(255, 255, 255, 0.402);
+    padding: 20px 100px;
+    color: greenyellow;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden; /* Ensure no overflow of blurred effect */
+    transition: filter 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+}
+
+.initialBlur {
+    filter: blur(10px); /* Adjust the blur amount as needed */
+    opacity: 0; /* Optional: Fade in along with blur */
+}
+
+.finalState {
+    filter: blur(0);
+    opacity: 1;
+}
+

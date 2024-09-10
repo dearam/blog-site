@@ -1,4 +1,9 @@
-<section>
+<div class="successSection" *ngIf="successVisible">
+    <div class="successCard" [ngClass]="{'initialBlur': isBlurred, 'finalState': !isBlurred}">
+        Blog Posted Successfully!
+    </div>
+</div>
+<section [ngStyle]="{'opacity':sectionOpacity}">
     <form (ngSubmit)="blogSubmit()" class="wrapper">
         <div class="second-wrapper">
             <div style="display: flex;align-items: center;justify-content: center;">
@@ -49,3 +54,4 @@
         <footer>Explore and Discuss your thoughts with us!</footer>
     </form>
 </section>
+
