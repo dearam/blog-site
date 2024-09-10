@@ -28,7 +28,7 @@ const BlogSchema = new Schema({
         type: Number,
         default: 0 
     },
-    body: {
+    content: {
         type: String,
         required: true, 
         trim: true 

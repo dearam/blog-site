@@ -14,59 +14,70 @@ const uploadImage=(req,res)=>{
 }
 
 
-const newBlog=async (req,res)=>{
-    try{
+const newBlog = async (req, res) => {
+    try {
+        // Define the helper function for checking valid ObjectId
         const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
-        const {title,userId,categories,tags,body,quotes,image}=req.body;
-        
 
+        // Extract data from request body
+        const { title, userId, categories, tags, content, quotes, image } = req.body;
+
+        // Log the request body for debugging
+        console.log(req.body);
+
+        // Validate userId
         if (!isValidObjectId(userId)) {
             return res.status(400).json({
                 message: "Invalid userId format."
             });
         }
 
-
-        if(!title || !userId || !body || !image){
+        // Validate required fields
+        if (!title || !userId || !content || !image) {
             return res.status(400).json({
-                message:"titile,userid,body,image one is null"
-            })
-        }
-        if(categories && !Array.isArray(categories)){
-            return res.status(400).json({
-                message:"categories must be array  is null"
-            })
-        }
-        if(tags && !Array.isArray(tags)){
-            return res.status(400).json({
-                message:"tags must be array  is null"
-            })
+                message: "Title, userId, content, and image are required."
+            });
         }
 
-        const blog=new Blog({
+        // Validate categories and tags
+        if (categories && !Array.isArray(categories)) {
+            return res.status(400).json({
+                message: "Categories must be an array."
+            });
+        }
+        if (tags && !Array.isArray(tags)) {
+            return res.status(400).json({
+                message: "Tags must be an array."
+            });
+        }
+
+        userIdObject=new mongoose.Types.ObjectId(userId);
+        // Create a new blog instance
+        const blog = new Blog({
             title,
-            userId,
-            date:new Date(),
-            categories:categories||[],
-            tags:tags||[],
-            body,
-            quotes:quotes||'',
-            image:string
-        })
+            userId: userIdObject, // Convert userId to ObjectId
+            date: new Date(),
+            categories: categories || [],
+            tags: tags || [],
+            content, // Assign the content from the request body
+            quotes: quotes || '', // Default to an empty string if quotes are not provided
+            image // Assign the image URL from the request body
+        });
 
-        const save=await blog.save();
+        // Save the blog to the database
+        const savedBlog = await blog.save();
         res.status(201).json({
-            message:"success",
-            blog:save
-        })
+            message: "Success",
+            blog: savedBlog
+        });
 
-    }catch(err){
-        console.log(err);
+    } catch (err) {
+        console.error(err); // Use console.error for error logs
         res.status(500).json({
-            error:err.message
-        })
+            error: err.message
+        });
     }
-}
+};
 
 const getAllBlogs=async(req,res)=>{
     try{

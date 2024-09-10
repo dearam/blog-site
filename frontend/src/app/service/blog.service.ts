@@ -3,12 +3,22 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable ,throwError,catchError} from 'rxjs';
 
+interface Blog {
+  title: string;
+  content: string;
+  tags: string[];
+  categories: string[];
+  quotes: string;
+  image: string;
+  userId: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
-  private baseUrl = 'http://localhost:3000/blog/';
+  private baseUrl = 'http://localhost:3000/blog';
 
   constructor(private http:HttpClient,private router:Router) { }
 
@@ -16,8 +26,8 @@ export class BlogService {
     return this.http.post<any>(`${this.baseUrl}/upload`,formData);
   }
 
-  newBlog(title:string,content:string,tags:any,categories:any,quotes:string,image:string,userId:any):Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}/newblog`,{title,content,tags,categories,quotes,image,userId},{withCredentials:true}).pipe(
+  newBlog(blog:Blog):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}/newblog`,blog,{withCredentials:true}).pipe(
       catchError(this.handleError)
     )
   }

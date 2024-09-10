@@ -1,5 +1,6 @@
 import { Component, ViewChild,ElementRef } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/service/auth.service';
 import { BlogService } from 'src/app/service/blog.service';
 
 
@@ -18,10 +19,10 @@ export class BlogNewComponent {
   content:string="";
   tags:string[]=[];
   categories:string[]=[];
-  imageUrl:string="";
   button:string="Choose image";
   selectedFile:File|null=null;
   quotes:string="";
+  imageUrl="";
 
   uerror=true;
 
@@ -37,10 +38,21 @@ export class BlogNewComponent {
   selectedFilecond=false;
   quotesmsg="";
   quotescond=false;
+  userData:any;
 
   @ViewChild('contenteditable',{static:false}) contenteditableRef!:ElementRef;
 
-  constructor(private blogservice:BlogService) {}
+  constructor(private blogservice:BlogService,private authService:AuthService) {}
+  ngOnInit(){
+    this.authService.userinfo().subscribe({
+      next:(res)=>{
+        this.userData=res._id;
+        console.log(typeof(this.userData));
+      },
+      error:(err)=>console.log(err)
+    })
+    console.log(this.userData);
+  }
 
   onUpload(event: any) {
     const fileInput=event.target as HTMLInputElement;
@@ -73,7 +85,7 @@ export class BlogNewComponent {
   viewFile(filename:string) {
     if(this.selectedFile){
       console.log(this.selectedFile.name);
-      this.imageUrl = `http://localhost:3000/uploads/${encodeURIComponent(filename)}`;
+      this.imageUrl = ``;
     }
   }
 
@@ -86,7 +98,22 @@ export class BlogNewComponent {
   blogSubmit(){
     this.resetErrors();
     if(!this.validateAll()) return;
+    if(this.selectedFile){
+      this.imageUrl=`http://localhost:3000/uploads/${this.button}`;
+    }
     
+    this.blogservice.newBlog({
+      title:this.title,
+      content:this.content,
+      tags:this.tags,
+      categories:this.categories,
+      quotes:this.quotes,
+      image:this.imageUrl,
+      userId:this.userData
+    }).subscribe({
+      next:(res)=>console.log(res),
+      error:(err)=>console.log(err)
+    })
 
   }
 
