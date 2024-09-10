@@ -102,3 +102,9 @@ footer{
     border-radius: 10px;
     cursor: pointer;
 }
+
+.input-error{
+    margin-left: 25px;
+    font-size: 10px;
+    color: red;
+}

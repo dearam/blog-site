@@ -6,24 +6,39 @@
             </div>
             <p-divider></p-divider>
             <div class="wrapper-space">
-                <input class="titleinput" placeholder="Title"[(ngModel)]="title" name="title"/>
-                <span #contenteditable class="textarea" role="textbox" contenteditable (input)="onContentChange()" name="content"></span>
-                <div class="p-fluid">
-                    Tags
-                    <p-chips [(ngModel)]="tags" name="tags"/>
+                <div class="input">
+                    <input class="titleinput" placeholder="Title"[(ngModel)]="title" name="title"/>
+                    <span class="input-error" *ngIf="titlecond">{{titlemsg}}</span>
                 </div>
-                <div class="p-fluid">
-                    Categories
-                    <p-chips [(ngModel)]="categories" name="categories"/>
+                <div class="input">
+                    <span #contenteditable class="textarea" role="textbox" contenteditable (input)="onContentChange()" name="content"></span>
+                    <span class="input-error" *ngIf="contentcond">{{contentmsg}}</span>
                 </div>
-                <input class="quoteinput" placeholder="Type Quote" [(ngModel)]="quotes" name="quotes"/>
+                <div class="input">
+                    <div class="p-fluid">
+                        Tags
+                        <p-chips [(ngModel)]="tags" name="tags"/>
+                    </div>
+                    <span class="input-error" *ngIf="tagcond">{{tagsmsg}}</span>
+                </div>
+                <div class="input">
+                    <div class="p-fluid">
+                        Categories
+                        <p-chips [(ngModel)]="categories" name="categories"/>
+                    </div>
+                    <span class="input-error" *ngIf="categoriescond">{{categoriesmsg}}</span>
+                </div>
+                <div class="input">
+                    <input class="quoteinput" placeholder="Type Quote" [(ngModel)]="quotes" name="quotes"/>
+                    <span class="input-error" *ngIf="quotescond">quotesmsg</span>
+                </div>
             </div>
-            <div class="card flex justify-content-center">
-                <input id="fileInput"  type="file" (change)="onUpload($event)" accept=".jpg,.jpeg,.png" style="display: none;"/>
-                <label for="fileInput" class="custom-file-upload">{{button}}</label>
-            </div>
-            <div>
-                <img [src]="imageUrl"/>
+            <div class="input">
+                <div class="card flex justify-content-center ">
+                    <input id="fileInput"  type="file" (change)="onUpload($event)" accept=".jpg,.jpeg,.png" style="display: none;"/>
+                    <label for="fileInput" class="custom-file-upload">{{button}}</label>
+                </div>
+                <span class="input-error" *ngIf="selectedFilecond">{{selectedFilemsg}}</span>
             </div>
             <div style="display: flex;align-items: center;justify-content: center;">
                 <p-button type="submit">submit</p-button>

@@ -23,6 +23,8 @@ export class BlogNewComponent {
   selectedFile:File|null=null;
   quotes:string="";
 
+  uerror=true;
+
   titlemsg="";
   titlecond=false;
   contentmsg="";
@@ -84,6 +86,8 @@ export class BlogNewComponent {
   blogSubmit(){
     this.resetErrors();
     if(!this.validateAll()) return;
+    
+
   }
 
   private resetErrors() {
@@ -105,8 +109,8 @@ export class BlogNewComponent {
     this.titlecond = !this.title;
     this.contentcond = !this.content;
     this.selectedFilecond = !this.selectedFile;
-    this.tagcond = !this.tags;
-    this.categoriescond = !this.categories;
+    this.tagcond = this.tags.length===0;
+    this.categoriescond = this.categories.length===0;
     this.quotescond = !this.quotes;
 
     this.titlemsg = this.titlecond ? 'Title required!' : '';

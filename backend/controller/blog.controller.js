@@ -17,8 +17,7 @@ const uploadImage=(req,res)=>{
 const newBlog=async (req,res)=>{
     try{
         const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
-        const {title,userId,categories,tags,body,quotes}=req.body;
-        const image = req.file ? req.file.filename:'';
+        const {title,userId,categories,tags,body,quotes,image}=req.body;
         
 
         if (!isValidObjectId(userId)) {
@@ -52,7 +51,7 @@ const newBlog=async (req,res)=>{
             tags:tags||[],
             body,
             quotes:quotes||'',
-            image
+            image:string
         })
 
         const save=await blog.save();
