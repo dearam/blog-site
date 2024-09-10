@@ -1,22 +1,22 @@
 <section>
-    <form class="wrapper">
+    <form (ngSubmit)="blogSubmit()" class="wrapper">
         <div class="second-wrapper">
             <div style="display: flex;align-items: center;justify-content: center;">
                 <span class="newBlog">New Blog</span>
             </div>
             <p-divider></p-divider>
             <div class="wrapper-space">
-                <input class="titleinput" placeholder="Title"/>
-                <span class="textarea" role="textbox" contenteditable></span>
+                <input class="titleinput" placeholder="Title"[(ngModel)]="title" name="title"/>
+                <span #contenteditable class="textarea" role="textbox" contenteditable (input)="onContentChange()" name="content"></span>
                 <div class="p-fluid">
                     Tags
-                    <p-chips [(ngModel)]="values" />
+                    <p-chips [(ngModel)]="tags" name="tags"/>
                 </div>
                 <div class="p-fluid">
                     Categories
-                    <p-chips [(ngModel)]="values" />
+                    <p-chips [(ngModel)]="categories" name="categories"/>
                 </div>
-                <input class="quoteinput" placeholder="Type Quote"/>
+                <input class="quoteinput" placeholder="Type Quote" [(ngModel)]="quotes" name="quotes"/>
             </div>
             <div class="card flex justify-content-center">
                 <input id="fileInput"  type="file" (change)="onUpload($event)" accept=".jpg,.jpeg,.png" style="display: none;"/>
@@ -26,7 +26,7 @@
                 <img [src]="imageUrl"/>
             </div>
             <div style="display: flex;align-items: center;justify-content: center;">
-                <p-button>submit</p-button>
+                <p-button type="submit">submit</p-button>
             </div>  
 
         </div>
