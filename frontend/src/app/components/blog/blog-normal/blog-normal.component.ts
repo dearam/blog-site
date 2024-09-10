@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-blog-normal',
@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./blog-normal.component.scss']
 })
 export class BlogNormalComponent {
+  @Input() blog:any;
 
+  content:string="";
+
+  ngOnInit(){
+    if(this.blog && this.blog.content){
+      this.content=this.blog.content.substring(0,100)+"...";
+    }
+  }
 }

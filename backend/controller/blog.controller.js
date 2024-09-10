@@ -93,5 +93,64 @@ const getAllBlogs=async(req,res)=>{
     }
 }
 
+const bulkInsertBlogs = async (req, res) => {
+    try {
+        // Extract the array of blog documents from the request body
+        const blogs = req.body;
 
-module.exports={newBlog,getAllBlogs,uploadImage} 
+        // Validate each blog object
+        for (const blog of blogs) {
+            const { userId, categories, tags, content, image } = blog;
+
+            // Validate userId
+            if (!mongoose.Types.ObjectId.isValid(userId)) {
+                return res.status(400).json({
+                    message: "Invalid userId format."
+                });
+            }
+
+            // Validate required fields
+            if (!blog.title || !userId || !content || !image) {
+                return res.status(400).json({
+                    message: "Title, userId, content, and image are required."
+                });
+            }
+
+            // Validate categories and tags
+            if (categories && !Array.isArray(categories)) {
+                return res.status(400).json({
+                    message: "Categories must be an array."
+                });
+            }
+            if (tags && !Array.isArray(tags)) {
+                return res.status(400).json({
+                    message: "Tags must be an array."
+                });
+            }
+        }
+
+        // Convert userId to ObjectId for all blogs
+        const blogsWithObjectId = blogs.map(blog => ({
+            ...blog,
+            userId: new mongoose.Types.ObjectId(blog.userId)
+        }));
+
+        // Insert many blogs into the collection
+        const result = await Blog.insertMany(blogsWithObjectId);
+
+        res.status(201).json({
+            message: "Successfully inserted blogs",
+            count: result.length
+        });
+
+    } catch (err) {
+        console.error(err); // Use console.error for error logs
+        res.status(500).json({
+            error: err.message
+        });
+    }
+};
+
+
+
+module.exports={newBlog,getAllBlogs,uploadImage,bulkInsertBlogs} 

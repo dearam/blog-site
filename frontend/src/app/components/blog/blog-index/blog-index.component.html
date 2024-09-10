@@ -4,11 +4,7 @@
         <p-button routerLink='/blog/write'><i class="pi pi-pen-to-square"></i>Write Blog</p-button>
     </div>
     <app-blog-trend></app-blog-trend>
-    <div class="blog-container">
-        <app-blog-normal></app-blog-normal>
-        <app-blog-normal></app-blog-normal>
-        <app-blog-normal></app-blog-normal>
-        <app-blog-normal></app-blog-normal>
-        <app-blog-normal></app-blog-normal>
+    <div class="blog-container" >
+        <app-blog-normal *ngFor="let blog of blogs" [blog]="blog"></app-blog-normal>
     </div>
 </section>

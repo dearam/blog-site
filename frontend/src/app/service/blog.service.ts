@@ -32,6 +32,12 @@ export class BlogService {
     )
   }
 
+  getBlogs():Observable<any>{
+    return this.http.get(`${this.baseUrl}/getallblogs`,{withCredentials:true}).pipe(
+      catchError(this.handleError)
+    )
+  }
+
 
 
 

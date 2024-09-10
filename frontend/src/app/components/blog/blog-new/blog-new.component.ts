@@ -35,6 +35,7 @@ export class BlogNewComponent {
   quotesmsg = "";
   quotescond = false;
   userData: any;
+  titleLengthCond = false;
 
   @ViewChild('contenteditable', { static: false }) contenteditableRef!: ElementRef;
 
@@ -160,7 +161,10 @@ export class BlogNewComponent {
     this.categoriescond = this.categories.length === 0;
     this.quotescond = !this.quotes;
 
-    this.titlemsg = this.titlecond ? 'Title required!' : '';
+    // Add title length validation
+    this.titleLengthCond = this.title.length < 35;
+
+    this.titlemsg = this.titlecond ? 'Title required!' : this.titleLengthCond ? 'Title must be 35 characters or less!' : '';
     this.contentmsg = this.contentcond ? 'Content required!' : '';
     this.selectedFilemsg = this.selectedFilecond ? 'Image required!' : '';
     this.tagsmsg = this.tagcond ? 'Tags required!' : '';
