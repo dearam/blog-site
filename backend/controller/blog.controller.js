@@ -151,6 +151,21 @@ const bulkInsertBlogs = async (req, res) => {
     }
 };
 
+const deleteAllBlogs=async (req,res)=>{
+    try{
+        const result=await Blog.deleteMany();
+
+        res.status(200).json({
+            message:"deleted all blogs"
+        })
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            error:err.message
+        })
+    }
+}
 
 
-module.exports={newBlog,getAllBlogs,uploadImage,bulkInsertBlogs} 
+
+module.exports={newBlog,getAllBlogs,uploadImage,bulkInsertBlogs,deleteAllBlogs} 

@@ -11,6 +11,7 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent {
   items: MenuItem[] | undefined;
     name="";
+    profile:any;
 
     constructor(private authservice:AuthService,private router:Router){}
     ngOnInit() {
@@ -74,7 +75,10 @@ export class HeaderComponent {
 
     userInfo(){
         this.authservice.userinfo().subscribe({
-            next:(response)=>this.name=response.name,
+            next:(response)=>{
+                this.name=response.name;
+                this.profile=response.profile;
+            },
             error:(err)=>console.log(err),
         });
     }

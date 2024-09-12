@@ -54,6 +54,12 @@ export class AuthService {
       catchError(this.handleError)
     )
   }
+  
+  getUser(id:string):Observable<any>{
+    return this.http.get(`${this.apiUrl}/get-user/${id}`,{withCredentials:true}).pipe(
+      catchError(this.handleError)
+    )
+  }
 
   private handleError(error: any) {
     let errorMessage = 'Something went wrong; please try again later.';

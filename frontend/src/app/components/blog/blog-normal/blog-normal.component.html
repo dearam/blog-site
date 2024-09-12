@@ -4,14 +4,14 @@
     <section class="sub-card">
         <img src={{blog.image}}/>
         
-        <p-tag severity="info" value="Category" [rounded]="true"></p-tag>
+        <p-tag severity="info" value={{blog.categories[0]}} [rounded]="true"></p-tag>
         
         <span class="blog-title">{{blog.title}}</span>
         <span class="sub-para">{{content}}...</span>
         <div style="display: flex; align-items: center;justify-content: space-between;">
             <div class="blog-user-deatails">
                 <p-avatar 
-                image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" 
+                image={{userProfile}} 
                 styleClass="mr-2" 
                 shape="circle" />
                 <div class="blog-name-time">

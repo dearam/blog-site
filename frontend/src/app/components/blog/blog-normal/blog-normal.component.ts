@@ -17,12 +17,13 @@ export class BlogNormalComponent {
 
   ngOnInit(){
     if(this.blog && this.blog.content){
-      this.content=this.blog.content.substring(0,90);
+      this.content=this.blog.content.substring(0,80);
     }
-    this.authService.userinfo().subscribe({
+    this.authService.getUser(this.blog.userId).subscribe({
       next:(res)=>{
-        this.userProfile=res.profile;
-        this.userName=res.name;
+        this.userProfile=res.data.profile;
+        this.userName=res.data.name;
+        console.log(res.data);
       },
       error:(err)=>{
         console.log(err);
