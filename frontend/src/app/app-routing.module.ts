@@ -8,6 +8,7 @@ import { IndexComponent } from './components/users/index/index.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ViewComponent } from './components/users/view/view.component';
 import { BlogNewComponent } from './components/blog/blog-new/blog-new.component';
+import { BlogViewComponent } from './components/blog/blog-view/blog-view.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
         path: 'blog',
         canActivate:[AuthGuard],
         children:[
-          {path:'write',component:BlogNewComponent}
+          {path:'write',component:BlogNewComponent},
+          {path:'view',component:BlogViewComponent}
         ]
       },
       {

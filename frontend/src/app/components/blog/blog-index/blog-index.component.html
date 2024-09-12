@@ -5,6 +5,6 @@
     </div>
     <app-blog-trend></app-blog-trend>
     <div class="blog-container" >
-        <app-blog-normal *ngFor="let blog of blogs" [blog]="blog"></app-blog-normal>
+        <app-blog-normal *ngFor="let blog of blogs" [blog]="blog" (click)="onClickBlog(blog)"></app-blog-normal>
     </div>
 </section>

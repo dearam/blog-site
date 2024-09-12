@@ -13,6 +13,42 @@ const uploadImage=(req,res)=>{
     console.log("file uploaded successfully");
 }
 
+const getBlog = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        // Validate ID format
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({
+                message: "Invalid blog ID format"
+            });
+        }
+
+        // Find the blog by ID
+        const blog = await Blog.findById(id);
+
+        if (!blog) {
+            // Log the issue and respond with a 404 status code
+            console.log(`Blog with ID ${id} not found`);
+            return res.status(404).json({
+                message: "Blog not found"
+            });
+        }
+
+        // Respond with the blog data
+        res.status(200).json({
+            blog: blog
+        });
+    } catch (err) {
+        // Log the error and respond with a 500 status code
+        console.error(err); // Use console.error for logging errors
+        res.status(500).json({
+            message: "An error occurred while retrieving the blog",
+            error: err.message // Include error message for debugging
+        });
+    }
+};
+
 
 const newBlog = async (req, res) => {
     try {
@@ -168,4 +204,4 @@ const deleteAllBlogs=async (req,res)=>{
 
 
 
-module.exports={newBlog,getAllBlogs,uploadImage,bulkInsertBlogs,deleteAllBlogs} 
+module.exports={newBlog,getAllBlogs,uploadImage,bulkInsertBlogs,deleteAllBlogs,getBlog} 

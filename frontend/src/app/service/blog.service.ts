@@ -38,6 +38,12 @@ export class BlogService {
     )
   }
 
+  getBlog(id:string):Observable<any>{
+    return this.http.get(`${this.baseUrl}/get-blog/${id}`,{withCredentials:true}).pipe(
+      catchError(this.handleError)
+    )
+  }
+
 
 
 

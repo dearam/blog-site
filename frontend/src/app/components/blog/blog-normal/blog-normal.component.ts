@@ -23,7 +23,6 @@ export class BlogNormalComponent {
       next:(res)=>{
         this.userProfile=res.data.profile;
         this.userName=res.data.name;
-        console.log(res.data);
       },
       error:(err)=>{
         console.log(err);

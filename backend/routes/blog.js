@@ -13,5 +13,6 @@ router.post("/uploadImage",upload.single('image'),blogController.uploadImage);
 router.post('/upload',upload.single('file'),blogController.uploadImage);
 router.post('/bulk-insert-blogs', blogController.bulkInsertBlogs);
 router.delete('/delete-all',blogController.deleteAllBlogs);
+router.get('/get-blog/:id',blogController.getBlog);
 
 module.exports=router;

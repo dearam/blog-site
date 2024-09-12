@@ -52,6 +52,7 @@ img{
 .sub-para{
     font-size: 14px;
     color: grey;
+    text-align: justify;
 }
 
 .blog-user-deatails{
@@ -87,4 +88,12 @@ i{
 }
 i:hover{
     color: greenyellow;
+}
+
+.card:hover{
+    border: 0.1px solid rgba(172, 255, 47, 0.626);
+    i{
+        color: greenyellow;
+        
+    }
 }

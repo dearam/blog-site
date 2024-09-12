@@ -1,0 +1,36 @@
+<section>
+    <section class="main">
+        <i class="pi pi-heart" style="position: absolute;right: 20px;"></i>
+        <div class="header">
+            <span class="h1">{{blogData.title}}</span>
+            <div style="display: flex;gap: 10px;">
+                <span class="tag" *ngFor="let cat of blogData.tags">{{cat}}</span>
+            </div>
+        </div>
+        <hr style="width: 100%;"/>
+        <div class="content">
+            <p>
+                {{contents[0]}}
+            </p>
+            <span class="hr" style="width: 100%;"></span>
+            <p>
+                {{contents[1]}}
+            </p>
+            <img src="{{blogData.image}}"/>
+            <p>
+                {{contents[2]}}
+            </p>
+        </div>
+        <div style="display: flex;gap: 10px;">
+            <p-tag class="category" severity="info" value={{cat}} [rounded]="true" *ngFor="let cat of blogData.categories"></p-tag>
+        </div>
+        <div class="footer">
+            <div style="display: flex;flex-direction: column;">
+                <span style="font-size: 9px; font-weight: 200;">Updated 10min ago</span>
+                <span style="font-size: 14px;font-weight: 500;">10 min read</span>
+            </div>
+            <i class="pi pi-bookmark" ></i>
+        </div>
+    
+    </section>
+</section>

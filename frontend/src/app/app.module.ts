@@ -37,6 +37,8 @@ import { ChipsModule } from 'primeng/chips';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { BlogViewComponent } from './components/blog/blog-view/blog-view.component';
+import { FieldsetModule } from 'primeng/fieldset'
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { MessageService } from 'primeng/api';
     BlogIndexComponent,
     BlogTrendComponent,
     BlogNormalComponent,
-    BlogNewComponent
+    BlogNewComponent,
+    BlogViewComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { MessageService } from 'primeng/api';
     DividerModule,
     ChipsModule,
     FileUploadModule,
-    ToastModule
+    ToastModule,
+    FieldsetModule
   ],
   providers: [
     MessageService

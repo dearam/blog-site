@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BlogService } from 'src/app/service/blog.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { BlogService } from 'src/app/service/blog.service';
 export class BlogIndexComponent {
   blogs:any=[];
 
-  constructor(private blogService:BlogService){}
+  constructor(private blogService:BlogService,private router:Router){}
   ngOnInit(){
     this.blogService.getBlogs().subscribe({
       next:(res)=>{
@@ -20,5 +21,9 @@ export class BlogIndexComponent {
         console.log(err);
       }
     })
+  }
+
+  onClickBlog(blog:any){
+    this.router.navigate(['/blog/view'],{queryParams:{ id:blog._id }});
   }
 }
