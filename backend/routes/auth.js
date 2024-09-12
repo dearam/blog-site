@@ -14,6 +14,7 @@ router.post("/login",userController.userLogin);
 router.use(verifyToken);
 
 router.get("/userinfo",userController.userInfo);
+router.get("/get-user/:id",userController.getUser);
 router.get("/logout",userController.userLogout);
 router.get("/alluser",userController.getAllUser);
 router.get("/home",(req,res)=>{

@@ -59,6 +59,25 @@ const userInfo = async (req, res) => {
     }
 }
 
+const getUser=async(req,res)=>{
+    const id=req.params.id;
+    if(!id){
+        res.status(404).json({
+            message:"id is required"
+        })
+    }
+    const user=await User.findById(id);
+    if(!user){
+        res.status(404).json({
+            message:"user not found",
+        })
+    }
+    res.status(200).json({
+        message:"success",
+        data:user
+    });
+}
+
 const userLogout = async (req, res) => {
     res.cookie("jwt", "", { maxAge: 0 });
     res.send({
@@ -140,5 +159,14 @@ const deleteUser= async(req,res)=>{
     }
 }
 
-module.exports = { registerUser, userInfo, userLogout, userLogin , getAllUser, editUser, deleteUser};
+module.exports = { 
+    registerUser, 
+    userInfo, 
+    userLogout, 
+    userLogin , 
+    getAllUser, 
+    editUser, 
+    deleteUser,
+    getUser,
+};
 
