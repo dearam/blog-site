@@ -1,6 +1,7 @@
 <section>
     <section class="main">
         <i class="pi pi-heart" style="position: absolute;right: 20px;"></i>
+        <i class="pi pi-bookmark" style="position: absolute;left: 20px;"></i>
         <div class="header">
             <span class="h1">{{blogData.title}}</span>
             <div style="display: flex;gap: 10px;">
@@ -24,12 +25,23 @@
         <div style="display: flex;gap: 10px;">
             <p-tag class="category" severity="info" value={{cat}} [rounded]="true" *ngFor="let cat of blogData.categories"></p-tag>
         </div>
+        <div class="quote">
+            <span>" {{blogData.quotes}} "</span>
+        </div>
         <div class="footer">
+            <div class="blog-user-deatails">
+                <p-avatar 
+                image={{userProfile}} 
+                styleClass="mr-2" 
+                shape="circle" />
+                <div class="blog-name-time">
+                    <span class="user-name">{{userName}}</span>
+                </div>
+            </div>
             <div style="display: flex;flex-direction: column;">
                 <span style="font-size: 9px; font-weight: 200;">Updated 10min ago</span>
                 <span style="font-size: 14px;font-weight: 500;">10 min read</span>
             </div>
-            <i class="pi pi-bookmark" ></i>
         </div>
     
     </section>

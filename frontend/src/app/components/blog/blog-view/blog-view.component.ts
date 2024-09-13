@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 import { BlogService } from 'src/app/service/blog.service';
 
 @Component({
@@ -11,28 +12,46 @@ export class BlogViewComponent {
 
   blogId:string|null=null;
   blogData:any;
-  content="Angular is a comprehensive, open-source framework developed by Google for building dynamic, single-page applications (SPAs). It leverages TypeScript, a superset of JavaScript, to bring strong typing and modern object-oriented programming capabilities to front-end development. Angular's core features include a powerful dependency injection system, which simplifies the management of application components and services, and a sophisticated data binding mechanism that keeps the model and view synchronized effortlessly. The framework's modular architecture allows developers to create reusable components and manage application state efficiently. Angular's CLI (Command Line Interface) streamlines development workflows by automating common tasks such as project setup, testing, and deployment. It also includes a set of built-in tools for code generation, which helps maintain consistency and reduces manual coding errors. With Angular, developers can create scalable applications that are maintainable and testable, thanks to its support for unit testing and end-to-end testing. The framework is designed to handle complex applications with ease, providing features like routing, forms, and HTTP client services that integrate seamlessly with backend systems. Additionally, Angular’s ecosystem is supported by a rich set of libraries and community tools, further enhancing its capabilities. The framework’s two-way data binding ensures that changes in the user interface are reflected in the application data model and vice versa, facilitating a responsive and interactive user experience. Angular also promotes best practices through its strong emphasis on modularity and component-based architecture, which helps developers build maintainable codebases that can evolve with application requirements. Overall, Angular provides a robust foundation for developing sophisticated web applications and is well-suited for enterprise-level projects where performance, scalability, and maintainability are critical.";
+  // content="Angular is a comprehensive, open-source framework developed by Google for building dynamic, single-page applications (SPAs). It leverages TypeScript, a superset of JavaScript, to bring strong typing and modern object-oriented programming capabilities to front-end development. Angular's core features include a powerful dependency injection system, which simplifies the management of application components and services, and a sophisticated data binding mechanism that keeps the model and view synchronized effortlessly. The framework's modular architecture allows developers to create reusable components and manage application state efficiently. Angular's CLI (Command Line Interface) streamlines development workflows by automating common tasks such as project setup, testing, and deployment. It also includes a set of built-in tools for code generation, which helps maintain consistency and reduces manual coding errors. With Angular, developers can create scalable applications that are maintainable and testable, thanks to its support for unit testing and end-to-end testing. The framework is designed to handle complex applications with ease, providing features like routing, forms, and HTTP client services that integrate seamlessly with backend systems. Additionally, Angular’s ecosystem is supported by a rich set of libraries and community tools, further enhancing its capabilities. The framework’s two-way data binding ensures that changes in the user interface are reflected in the application data model and vice versa, facilitating a responsive and interactive user experience. Angular also promotes best practices through its strong emphasis on modularity and component-based architecture, which helps developers build maintainable codebases that can evolve with application requirements. Overall, Angular provides a robust foundation for developing sophisticated web applications and is well-suited for enterprise-level projects where performance, scalability, and maintainability are critical.";
+  content:string="";
   contents:string[]=[];
-  constructor(private router:ActivatedRoute,private blogService:BlogService){
+  userProfile:string="";
+  userName:string="";
+
+
+  constructor(private router:ActivatedRoute,private blogService:BlogService,private authService:AuthService){
     this.router.queryParamMap.subscribe(params=>{
       this.blogId=params.get('id');
     })
   }
-  ngOnInit(){
+
+  ngOnInit() {
     console.log(this.blogId);
-    if(this.blogId){
+    if (this.blogId) {
       this.blogService.getBlog(this.blogId).subscribe({
-        next:(res)=>{
-          this.blogData=res.blog;
-          console.log(this.blogData);
+        next: (res) => {
+          this.blogData = res.blog;
+          this.authService.getUser(this.blogData.userId).subscribe({
+            next: (res) => {
+              this.userName = res.data.name;
+              this.userProfile = res.data.profile;
+              this.content = this.blogData.content;
+              console.log(this.content.length);
+              this.contentSplitting(); // Call after content is set
+              console.log(this.contents); // Check contents array
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
         },
-        error:(err)=>{
-          console.log(err)
+        error: (err) => {
+          console.log(err);
         }
-      })
+      });
     }
-    this.contentSplitting();
   }
+  
 
   contentSplitting() {
     // Initialize contents array
@@ -53,7 +72,6 @@ export class BlogViewComponent {
         
         // Store the first part
         this.contents[0] = this.content.substring(0, dotone + 1);
-        console.log(dotone);
         
         // Update the starting index for the next part
         splitIndex = dotone + 1;
@@ -68,8 +86,6 @@ export class BlogViewComponent {
         
         // Store the remaining part
         this.contents[2] = this.content.substring(splitIndex);
-        console.log(this.contents);
-        console.log(this.content);
       }
   }
 

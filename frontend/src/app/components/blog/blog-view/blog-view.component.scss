@@ -85,3 +85,32 @@ i{
 .pi-heart:hover{
     color: rgb(255, 11, 202);
 }
+.pi-bookmark:hover{
+    color: greenyellow;
+}
+
+.blog-user-deatails{
+    display: flex;
+    gap: 10px;
+}
+
+.user-name{
+    font-size: 14px;
+    color: white;
+}
+.read-time{
+    color: gray;
+    font-size: 10px;
+}
+
+.quote{
+    font-style: italic;
+    margin-top: 30px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    background-color: rgba(127, 255, 212, 0.237);
+}
+.quote:hover{
+    background-color: rgba(0, 0, 0, 0.479);
+    color:greenyellow;
+}
