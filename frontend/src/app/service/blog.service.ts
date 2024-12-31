@@ -18,7 +18,7 @@ interface Blog {
 })
 export class BlogService {
 
-  private baseUrl = 'http://localhost:3000/blog';
+  private baseUrl = 'https://blogapi-n1rt.onrender.com/blog';
 
   constructor(private http:HttpClient,private router:Router) { }
 
