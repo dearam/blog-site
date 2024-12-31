@@ -9,7 +9,7 @@ import { User } from '../components/users/index/users.model';
 })
 export class AuthService {
 
-  private apiUrl="http://localhost:3000/auth";
+  private apiUrl="https://blogapi-n1rt.onrender.com/auth";
   constructor(private http:HttpClient,private router:Router) { }
 
   register(name:string,email:string,password:string,profile:string):Observable<any>{
