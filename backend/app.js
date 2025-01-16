@@ -15,7 +15,7 @@ var blogRouter  = require('./routes/blog');
 
 var app = express();
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: 'https://blog-site-sigma-nine.vercel.app/',
   credentials:true
 }));
 
